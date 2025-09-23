@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% extends "base.html" %}
+  {% block content %}
+  <h1 class="text-2xl font-bold mb-4">Available Movies</h1>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    {% for movie in movies %}
+    <div class="bg-white shadow-lg rounded-xl overflow-hidden">
+      {% if movie.poster %}
+      <img src="{{ movie.poster.url }}" class="w-full h-64 object-cover">
+      {% endif %}
+      <div class="p-4">
+        <h2 class="text-lg font-semibold">{{ movie.title }}</h2>
+        <p class="text-gray-600 text-sm line-clamp-2">{{ movie.description }}</p>
+        <a href="{% url 'movie_detail' movie.id %}" class="inline-block mt-2 text-blue-600 hover:underline">
+          View Shows →</a>
+        </div>
+      </div>
+      {% empty %}
+      <p>No movies yet. <a href="{% url 'add_movie' %}" class="text-blue-500 underline">Add one</a>.</p>
+      {% endfor %}
+    </div>
+    {%endblock%}
+  
+</body>
+</html>

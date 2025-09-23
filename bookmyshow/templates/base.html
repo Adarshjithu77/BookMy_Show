@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BookMyShow Clone</title>
+    {% tailwind_css %}
+</head>
+<body class="bg-gray-100 text-gray-900">
+<nav class="bg-gray-800 text-white p-4 flex justify-between">
+    <a href="/" class="font-bold">🎬 BookMyShow Clone</a>
+    <div class="space-x-4">
+        <a href="{% url 'add_movie' %}" class="hover:underline">Add Movie</a>
+        <a href="{% url 'add_show' %}" class="hover:underline">Add Show</a>
+    </div>
+</nav>
+
+<div class="max-w-4xl mx-auto p-6">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

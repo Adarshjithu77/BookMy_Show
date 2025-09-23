@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    <a href="{% url 'movie_detail' show.movie.id %}" class="text-blue-500 hover:underline">← Back</a>
+    
+    <h1 class="text-2xl font-bold mt-4 mb-2">Book Tickets for {{ show.movie.title }}</h1>
+    <p class="text-gray-600">Show: {{ show.date }} {{ show.time }}</p>
+    <p class="text-gray-600 mb-4">Available Seats: {{ show.available_seats }}</p>
+    
+    {% if error %}
+    <p class="text-red-600 mb-3">{{ error }}</p>
+    {% endif %}
+    
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Confirm Booking
+    </button>
+    </form>
+    {% endblock %}
+    
+</body>
+</html>
